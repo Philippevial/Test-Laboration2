@@ -82,7 +82,7 @@ public class BowlingTest {
     }
 
     @Test
-    void shouldReturnCorrectBonusWhenThreeStrikesIsRolledInARow() {
+    void shouldReturnCorrectBonusWhenThreeStrikesIsRolledConsequently() {
         Game game = new Game();
 
         game.roll(10);
@@ -93,5 +93,20 @@ public class BowlingTest {
         game.multipleRolls(15,0);
 
         assertEquals(78, game.score());
+    }
+
+    @Test
+    void shouldReturnCorrectBonusWhenThreeSparesIsRolledConsequently() {
+        Game game = new Game();
+
+        game.roll(1);
+        game.roll(9);
+        game.roll(5);
+        game.roll(5);
+        game.roll(7);
+        game.roll(3);
+        game.multipleRolls(14,0);
+
+        assertEquals(42, game.score());
     }
 }
