@@ -21,9 +21,20 @@ public class BowlingTest {
     void singlePinKnockedShouldGiveScoreOne() {
         Game game = new Game();
 
-        game.roll(1);
+        game.roll(2);
         int result = game.score();
 
         assertEquals(1, result);
+    }
+
+    @Test
+    void scoreShouldReturnSumOfTwoRolls() {
+        Game game = new Game();
+
+        game.roll(2);
+        game.roll(3);
+        int result = game.score();
+
+        assertEquals(5, result);
     }
 }
