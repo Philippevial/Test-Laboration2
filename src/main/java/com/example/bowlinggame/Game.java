@@ -1,8 +1,5 @@
 package com.example.bowlinggame;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Game {
     private int score;
     private final int[] rolls = new int[21];
@@ -29,7 +26,7 @@ public class Game {
     }
 
 
-    public void fullSeries(int roll, int knockedPins) {
+    public void multipleRolls(int roll, int knockedPins) {
         for (int i = 0; i < roll; i++) {
             score += knockedPins;
         }

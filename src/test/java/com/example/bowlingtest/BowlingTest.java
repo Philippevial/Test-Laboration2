@@ -12,9 +12,8 @@ public class BowlingTest {
         Game game = new Game();
 
         game.roll(0);
-        int result = game.score();
 
-        assertEquals(0, result);
+        assertEquals(0, game.score());
     }
 
     @Test
@@ -22,9 +21,8 @@ public class BowlingTest {
         Game game = new Game();
 
         game.roll(1);
-        int result = game.score();
 
-        assertEquals(1, result);
+        assertEquals(1, game.score());
     }
 
     @Test
@@ -33,19 +31,17 @@ public class BowlingTest {
 
         game.roll(2);
         game.roll(3);
-        int result = game.score();
 
-        assertEquals(5, result);
+        assertEquals(5, game.score());
     }
 
     @Test
-    void scoreShouldReturnSumOfAFullSeries() {
+    void scoreShouldReturnSumOfAMultipleRolls() {
         Game game = new Game();
 
-        game.fullSeries(20, 1);
-        int result = game.score();
+        game.multipleRolls(20, 1);
 
-        assertEquals(20, result);
+        assertEquals(20, game.score());
     }
 
     @Test
@@ -55,8 +51,8 @@ public class BowlingTest {
         game.roll(3);
         game.roll(7);
         game.roll(5);
-        game.fullSeries(17,1);
+        game.multipleRolls(17,0);
 
-        assertEquals(37, game.score());
+        assertEquals(20, game.score());
     }
 }
