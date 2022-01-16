@@ -14,7 +14,16 @@ public class BowlingTest {
         game.roll(0);
         int result = game.score();
 
-        assertEquals(result, 0);
+        assertEquals(0, result);
     }
 
+    @Test
+    void singlePinKnockedShouldGiveScoreOne() {
+        Game game = new Game();
+
+        game.roll(1);
+        int result = game.score();
+
+        assertEquals(1, result);
+    }
 }
