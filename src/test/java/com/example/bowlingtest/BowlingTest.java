@@ -21,7 +21,7 @@ public class BowlingTest {
     void singlePinKnockedShouldGiveScoreOne() {
         Game game = new Game();
 
-        game.roll(2);
+        game.roll(1);
         int result = game.score();
 
         assertEquals(1, result);
@@ -37,4 +37,15 @@ public class BowlingTest {
 
         assertEquals(5, result);
     }
+
+    @Test
+    void scoreShouldReturnSumOfAFullSeries() {
+        Game game = new Game();
+
+        game.fullSeries(20,1);
+        int result = game.score();
+
+        assertEquals(20, result);
+    }
+
 }
