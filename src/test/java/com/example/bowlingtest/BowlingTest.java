@@ -42,10 +42,21 @@ public class BowlingTest {
     void scoreShouldReturnSumOfAFullSeries() {
         Game game = new Game();
 
-        game.fullSeries(20,1);
+        game.fullSeries(20, 1);
         int result = game.score();
 
         assertEquals(20, result);
     }
 
+    @Test
+    void shouldReturnPointsOfASpareInFullSeries() {
+        Game game = new Game();
+
+        game.roll(3);
+        game.roll(7);
+        game.roll(5);
+        game.fullSeries(17,1);
+
+        assertEquals(37, game.score());
+    }
 }
