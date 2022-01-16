@@ -45,14 +45,26 @@ public class BowlingTest {
     }
 
     @Test
-    void shouldReturnPointsOfASpareInFullSeries() {
+    void shouldReturnPointsOfOneSpareWithBonusInFullSeries() {
         Game game = new Game();
 
-        game.roll(3);
-        game.roll(7);
+        game.roll(1);
+        game.roll(9);
         game.roll(5);
         game.multipleRolls(17,0);
 
         assertEquals(20, game.score());
+    }
+
+    @Test
+    void shouldReturnPointsOfOneStrikeWithBonusInMultipleRolls() {
+        Game game = new Game();
+
+        game.roll(10);
+        game.roll(7);
+        game.roll(1);
+        game.multipleRolls(16,0);
+
+        assertEquals(26, game.score());
     }
 }
