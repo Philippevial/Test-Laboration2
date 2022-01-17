@@ -24,6 +24,7 @@ public class Game {
                 frameScore(frameIndex);
                 frameIndex += 2;
             }
+
         }
         return score;
     }
@@ -48,10 +49,10 @@ public class Game {
         return rolls[frameIndex] + rolls[frameIndex + 1] == 10;
     }
 
-
     public void multipleRolls(int roll, int knockedPins) {
         for (int i = 0; i < roll; i++) {
             roll(knockedPins);
         }
     }
+
 }

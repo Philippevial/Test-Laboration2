@@ -3,14 +3,15 @@ package com.example.bowlingtest;
 import com.example.bowlinggame.Game;
 import org.junit.jupiter.api.Test;
 
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BowlingTest {
+    Game game = new Game();
+
 
     @Test
     void gutterBallShouldReturnScoreZero() {
-        Game game = new Game();
-
         game.roll(0);
 
         assertEquals(0, game.score());
@@ -18,8 +19,6 @@ public class BowlingTest {
 
     @Test
     void singlePinKnockedShouldGiveScoreOne() {
-        Game game = new Game();
-
         game.roll(1);
 
         assertEquals(1, game.score());
@@ -27,8 +26,6 @@ public class BowlingTest {
 
     @Test
     void scoreShouldReturnSumOfTwoRolls() {
-        Game game = new Game();
-
         game.roll(2);
         game.roll(3);
 
@@ -37,8 +34,6 @@ public class BowlingTest {
 
     @Test
     void scoreShouldReturnSumOfAMultipleRolls() {
-        Game game = new Game();
-
         game.multipleRolls(20, 1);
 
         assertEquals(20, game.score());
@@ -46,20 +41,16 @@ public class BowlingTest {
 
     @Test
     void shouldReturnPointsOfOneSpareWithBonusInFullSeries() {
-        Game game = new Game();
-
         game.roll(1);
         game.roll(9);
         game.roll(5);
-        game.multipleRolls(17,0);
+        game.multipleRolls(16,0);
 
         assertEquals(20, game.score());
     }
 
     @Test
     void shouldReturnPointsOfOneStrikeWithBonusInMultipleRolls() {
-        Game game = new Game();
-
         game.roll(10);
         game.roll(7);
         game.roll(1);
@@ -70,43 +61,62 @@ public class BowlingTest {
 
     @Test
     void shouldReturnCorrectBonusWhenTwoStrikesIsRolledInARow() {
-        Game game = new Game();
-
         game.roll(10);
         game.roll(10);
         game.roll(9);
         game.roll(0);
-        game.multipleRolls(16,0);
+        game.multipleRolls(15,0);
 
         assertEquals(57, game.score());
     }
 
     @Test
     void shouldReturnCorrectBonusWhenThreeStrikesIsRolledConsequently() {
-        Game game = new Game();
-
         game.roll(10);
         game.roll(10);
         game.roll(10);
         game.roll(0);
         game.roll(9);
-        game.multipleRolls(15,0);
+        game.multipleRolls(14,0);
 
         assertEquals(78, game.score());
     }
 
     @Test
     void shouldReturnCorrectBonusWhenThreeSparesIsRolledConsequently() {
-        Game game = new Game();
-
         game.roll(1);
         game.roll(9);
         game.roll(5);
         game.roll(5);
         game.roll(7);
         game.roll(3);
-        game.multipleRolls(14,0);
+        game.multipleRolls(13,0);
 
         assertEquals(42, game.score());
+    }
+
+    @Test
+    void testARealisticFullSeriesGame() {
+        game.roll(1);
+        game.roll(4);
+        game.roll(4);
+        game.roll(5);
+        game.roll(6);
+        game.roll(4);
+        game.roll(5);
+        game.roll(5);
+        game.roll(10);
+        game.roll(0);
+        game.roll(1);
+        game.roll(7);
+        game.roll(3);
+        game.roll(6);
+        game.roll(4);
+        game.roll(10);
+        game.roll(2);
+        game.roll(8);
+        game.roll(6);
+
+        assertEquals(133, game.score());
     }
 }
