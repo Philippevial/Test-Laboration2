@@ -1,21 +1,32 @@
 package com.example.bowlinggame;
 
-public class Game {
-    private final int[] rolls = new int[21];
-    int score = 0;
-    private int currentRoll;
+import java.util.ArrayList;
+import java.util.List;
 
+public class Game {
+    private final List<Integer> rolls = new ArrayList<>();
+    int score = 0;
+    int rollLimit = 20;
+    int frameIndex = 0;
+    int counter = 0;
 
     public void roll(int knockedPins) {
-        rolls[currentRoll++] = knockedPins;
+
+        if (rolls.size() <= rollLimit) {
+            rolls.add(knockedPins);
+            counter++;
+        } else if (isStrike(counter)) {
+            rollLimit++;
+            roll(knockedPins);
+
+        }
+
     }
 
     public int score() {
-        int frameIndex = 0;
 
         for (int frame = 0; frame < 10; frame++) {
             if (isStrike(frameIndex)) {
-                strikeBonus(frameIndex);
                 frameIndex++;
             } else if (isSpare(frameIndex)) {
                 spareBonus(frameIndex);
@@ -24,35 +35,30 @@ public class Game {
                 frameScore(frameIndex);
                 frameIndex += 2;
             }
-
         }
         return score;
     }
 
     private void frameScore(int frameIndex) {
-        score += rolls[frameIndex] + rolls[frameIndex + 1];
+        score += rolls.get(frameIndex) + rolls.get(frameIndex + 1);
     }
 
     private void spareBonus(int frameIndex) {
-        score += 10 + rolls[frameIndex + 2];
-    }
-
-    private void strikeBonus(int frameIndex) {
-        score += 10 + rolls[frameIndex + 1] + rolls[frameIndex + 2];
+        score += 10 + rolls.get(frameIndex + 2);
     }
 
     private boolean isStrike(int frameIndex) {
-        return rolls[frameIndex] == 10;
+        if (rolls.get(frameIndex) == 10) {
+            score += 10 + rolls.get(frameIndex + 1) + rolls.get(frameIndex + 2);
+            return true;
+        } else
+            return false;
     }
 
     private boolean isSpare(int frameIndex) {
-        return rolls[frameIndex] + rolls[frameIndex + 1] == 10;
-    }
 
-    public void multipleRolls(int roll, int knockedPins) {
-        for (int i = 0; i < roll; i++) {
-            roll(knockedPins);
-        }
+        if (rolls.get(frameIndex) + rolls.get(frameIndex + 1) == 10) return true;
+        else return false;
     }
 
 }
