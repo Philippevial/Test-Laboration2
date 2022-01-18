@@ -12,15 +12,15 @@ public class Game {
 
     public void roll(int knockedPins) {
 
-        if (rolls.size() <= rollLimit) {
+        if (counter < rollLimit) {
             rolls.add(knockedPins);
-            counter++;
-        } else if (isStrike(counter)) {
-            rollLimit++;
-            roll(knockedPins);
-
         }
-
+        if (counter == 18 && knockedPins == 10) {
+            rollLimit += 2;
+        }else if (counter == 19 && rolls.get(18) + knockedPins == 10) {
+            rollLimit++;
+        }
+        counter++;
     }
 
     public int score() {
@@ -29,7 +29,6 @@ public class Game {
             if (isStrike(frameIndex)) {
                 frameIndex++;
             } else if (isSpare(frameIndex)) {
-                spareBonus(frameIndex);
                 frameIndex += 2;
             } else {
                 frameScore(frameIndex);
@@ -43,10 +42,6 @@ public class Game {
         score += rolls.get(frameIndex) + rolls.get(frameIndex + 1);
     }
 
-    private void spareBonus(int frameIndex) {
-        score += 10 + rolls.get(frameIndex + 2);
-    }
-
     private boolean isStrike(int frameIndex) {
         if (rolls.get(frameIndex) == 10) {
             score += 10 + rolls.get(frameIndex + 1) + rolls.get(frameIndex + 2);
@@ -56,9 +51,11 @@ public class Game {
     }
 
     private boolean isSpare(int frameIndex) {
-
-        if (rolls.get(frameIndex) + rolls.get(frameIndex + 1) == 10) return true;
-        else return false;
+        if (rolls.get(frameIndex) + rolls.get(frameIndex + 1) == 10) {
+            score += 10 + rolls.get(frameIndex + 2);
+            return true;
+        } else
+            return false;
     }
 
 }

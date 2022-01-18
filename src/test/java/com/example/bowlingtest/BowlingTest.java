@@ -4,9 +4,9 @@ import com.example.bowlinggame.Game;
 import org.junit.jupiter.api.Test;
 
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
-public class BowlingTest {
+class BowlingTest {
     Game game = new Game();
 
     private void fullSeries(int roll, int knockedPins) {
@@ -20,7 +20,7 @@ public class BowlingTest {
         game.roll(0);
         fullSeries(19,0);
 
-        assertEquals(0, game.score());
+        assertThat(game.score()).isZero();
     }
 
     @Test
@@ -28,7 +28,7 @@ public class BowlingTest {
         game.roll(1);
         fullSeries(19,0);
 
-        assertEquals(1, game.score());
+        assertThat(game.score()).isEqualTo(1);
     }
 
     @Test
@@ -38,14 +38,14 @@ public class BowlingTest {
         fullSeries(18,0);
 
 
-        assertEquals(5, game.score());
+        assertThat(game.score()).isEqualTo(5);
     }
 
     @Test
     void scoreShouldReturnSumOfAMultipleRolls() {
         fullSeries(20, 1);
 
-        assertEquals(20, game.score());
+        assertThat(game.score()).isEqualTo(20);
     }
 
     @Test
@@ -55,7 +55,8 @@ public class BowlingTest {
         game.roll(5);
         fullSeries(17,0);
 
-        assertEquals(20, game.score());
+        assertThat(game.score()).isEqualTo(20);
+
     }
 
     @Test
@@ -65,7 +66,8 @@ public class BowlingTest {
         game.roll(1);
         fullSeries(17,0);
 
-        assertEquals(26, game.score());
+        assertThat(game.score()).isEqualTo(26);
+
     }
 
     @Test
@@ -76,7 +78,8 @@ public class BowlingTest {
         game.roll(0);
         fullSeries(15,0);
 
-        assertEquals(57, game.score());
+        assertThat(game.score()).isEqualTo(57);
+
     }
 
     @Test
@@ -88,7 +91,7 @@ public class BowlingTest {
         game.roll(9);
         fullSeries(14,0);
 
-        assertEquals(78, game.score());
+        assertThat(game.score()).isEqualTo(78);
     }
 
     @Test
@@ -101,7 +104,8 @@ public class BowlingTest {
         game.roll(3);
         fullSeries(14,0);
 
-        assertEquals(42, game.score());
+        assertThat(game.score()).isEqualTo(42);
+
     }
 
     @Test
@@ -126,18 +130,29 @@ public class BowlingTest {
         game.roll(8);
         game.roll(6);
 
-        assertEquals(133, game.score());
+        assertThat(game.score()).isEqualTo(133);
+
     }
 
     @Test
     void strikeOnLastFrameShouldGiveTwoExtraRolls() {
         fullSeries(18,0);
         game.roll(10);
-        game.roll(4);
+        game.roll(10);
         game.roll(4);
 
-        assertEquals(30, game.score());
+        assertThat(game.score()).isEqualTo(24);
 
+    }
+
+    @Test
+    void spareOnLastFrameShouldGiveOneExtraRoll() {
+        fullSeries(18,0);
+        game.roll(7);
+        game.roll(3);
+        game.roll(4);
+
+        assertThat(game.score()).isEqualTo(14);
     }
 
 }
