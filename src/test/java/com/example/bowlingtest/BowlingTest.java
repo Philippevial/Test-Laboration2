@@ -138,10 +138,10 @@ class BowlingTest {
     void strikeOnLastFrameShouldGiveTwoExtraRolls() {
         fullSeries(18,0);
         game.roll(10);
-        game.roll(10);
+        game.roll(4);
         game.roll(4);
 
-        assertThat(game.score()).isEqualTo(24);
+        assertThat(game.score()).isEqualTo(18);
 
     }
 

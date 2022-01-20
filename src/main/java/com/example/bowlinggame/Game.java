@@ -17,10 +17,13 @@ public class Game {
         }
         if (counter == 18 && knockedPins == 10) {
             rollLimit += 2;
-        }else if (counter == 19 && rolls.get(18) + knockedPins == 10) {
+        }
+        if (counter == 19 && rolls.get(18) + knockedPins == 10) {
             rollLimit++;
         }
+
         counter++;
+
     }
 
     public int score() {
