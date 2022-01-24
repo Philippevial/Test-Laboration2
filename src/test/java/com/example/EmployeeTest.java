@@ -28,4 +28,18 @@ class EmployeeTest {
 
         assertThat(result).isEqualTo(100.0);
     }
+
+    @Test
+    void setSalaryShouldReplaceSalaryWith1000() {
+        employee.setSalary(1000.0);
+
+        assertThat(employee.getSalary()).isEqualTo(1000.0);
+    }
+
+    @Test
+    void isPaidShouldReturnFalse() {
+        var result = employee.isPaid();
+
+        assertThat(result).isFalse();
+    }
 }
