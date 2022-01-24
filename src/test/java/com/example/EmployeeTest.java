@@ -42,4 +42,11 @@ class EmployeeTest {
 
         assertThat(result).isFalse();
     }
+
+    @Test
+    void setPaidShouldReturnTrue() {
+        employee.setPaid(true);
+
+        assertThat(employee.isPaid()).isTrue();
+    }
 }
