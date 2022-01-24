@@ -49,4 +49,11 @@ class EmployeeTest {
 
         assertThat(employee.isPaid()).isTrue();
     }
+
+    @Test
+    void toStringShouldReturnEmployee() {
+        var result = employee.toString();
+
+        assertThat(result).isEqualTo("Employee [id=123, salary=" + 100.0 + "]");
+    }
 }
