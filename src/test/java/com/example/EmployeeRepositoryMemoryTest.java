@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -45,5 +44,13 @@ class EmployeeRepositoryMemoryTest {
         assertThat(result).size().isEqualTo(4);
     }
 
+    @Test
+    void saveOnEmployeeIdAlreadyInListShouldOverwriteOldOne() {
+        var employee = employeeRepository.findAll().get(0);
 
+        var employeeUpgrade = employeeRepository.save(new Employee("123", 200.0));
+
+        assertThat(employees).contains(employeeUpgrade).doesNotContain(employee);
+
+    }
 }
