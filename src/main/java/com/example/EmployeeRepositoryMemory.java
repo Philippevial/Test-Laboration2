@@ -17,6 +17,8 @@ public class EmployeeRepositoryMemory implements EmployeeRepository {
 
     @Override
     public Employee save(Employee e) {
-        return null;
+        employees.add(e);
+
+        return e;
     }
 }
