@@ -50,7 +50,6 @@ class EmployeeRepositoryMemoryTest {
 
         var employeeUpgrade = employeeRepository.save(new Employee("123", 200.0));
 
-        assertThat(employees).contains(employeeUpgrade).doesNotContain(employee);
-
+        assertThat(employees).doesNotContain(employee).contains(employeeUpgrade);
     }
 }

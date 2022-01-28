@@ -16,9 +16,7 @@ class EmployeeManagerTest {
             new Employee("456", 99.0),
             new Employee("789", 101.0)));
     BankService bankService = mock(BankService.class);
-    EmployeeManager employeeManager = new EmployeeManager(employeeRepository,bankService);
-
-
+    EmployeeManager employeeManager = new EmployeeManager(employeeRepository, bankService);
 
 
     @Test
@@ -32,7 +30,7 @@ class EmployeeManagerTest {
     void shouldThrowRuntimeExceptionWhenIsPaidIsFalse() {
         doThrow(new RuntimeException())
                 .when(bankService)
-                        .pay(anyString(),anyDouble());
+                .pay(anyString(), anyDouble());
 
         employeeManager.payEmployees();
 
