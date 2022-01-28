@@ -35,5 +35,6 @@ class EmployeeManagerTest {
         employeeManager.payEmployees();
 
         assertThat(employeeRepository.findAll().get(0).isPaid()).isFalse();
+        assertThat(employeeRepository.findAll().size()).isEqualTo(3);
     }
 }
