@@ -21,9 +21,7 @@ public class Game {
         if (counter == 19 && rolls.get(18) + knockedPins == 10) {
             rollLimit++;
         }
-
         counter++;
-
     }
 
     public int score() {
@@ -49,16 +47,16 @@ public class Game {
         if (rolls.get(frameIndex) == 10) {
             score += 10 + rolls.get(frameIndex + 1) + rolls.get(frameIndex + 2);
             return true;
-        } else
-            return false;
+        }
+        return false;
     }
 
     private boolean isSpare(int frameIndex) {
         if (rolls.get(frameIndex) + rolls.get(frameIndex + 1) == 10) {
             score += 10 + rolls.get(frameIndex + 2);
             return true;
-        } else
-            return false;
+        }
+        return false;
     }
 
 }
