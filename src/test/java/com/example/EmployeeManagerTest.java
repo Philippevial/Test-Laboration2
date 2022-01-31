@@ -27,7 +27,7 @@ class EmployeeManagerTest {
     }
 
     @Test
-    void shouldThrowRuntimeExceptionWhenIsPaidIsFalse() {
+    void employeeShouldNotBeMarkedAsPayedWhenBankServiceThrowsException() {
         doThrow(new RuntimeException())
                 .when(bankService)
                 .pay(anyString(), anyDouble());
